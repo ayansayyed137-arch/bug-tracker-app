@@ -32,7 +32,7 @@ export default function Projects() {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/projects', {
+      const res = await fetch('/api/projects', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();
@@ -65,7 +65,7 @@ export default function Projects() {
   const handleCreateProject = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/projects', {
+      const res = await fetch('/api/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export default function Projects() {
     if (!window.confirm("Kya aap sach mein is project ko delete karna chahte hain?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/projects/${activeProjectId}`, {
+      const res = await fetch(`/api/projects/${activeProjectId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -115,7 +115,7 @@ export default function Projects() {
 
   const handleRemoveMember = async (projectId, memberId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/projects/${projectId}/members/${memberId}`, {
+      const res = await fetch(`/api/projects/${projectId}/members/${memberId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -234,7 +234,7 @@ export default function Projects() {
               const email = emailInput.value;
               if (!email) return;
               try {
-                const res = await fetch(`http://localhost:5000/api/projects/${currentProj._id}/members`, {
+                const res = await fetch(`/api/projects/${currentProj._id}/members`, {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
