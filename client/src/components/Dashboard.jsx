@@ -481,9 +481,11 @@ export default function Dashboard({ onLogout }) {
     </div>
   );
 
-  // Helper function to render individual Bug Card with Comments & Activity Logs
+  // Helper function to render individual Bug Card with Action Buttons
   function renderBugCard(bug) {
     const isDone = bug.status === 'Done';
+    const isInProgress = bug.status === 'In Progress';
+    const isToDo = !bug.status || bug.status === 'Open' || bug.status === 'To Do';
     const currentActiveTab = activeTab[bug._id] || 'comments';
 
     return (
@@ -574,20 +576,38 @@ export default function Dashboard({ onLogout }) {
           )}
         </div>
 
-        {/* Status Dropdown and Delete */}
+        {/* Action Buttons & Delete */}
         <div className="flex justify-between items-center pt-2 gap-2">
-          <select
-            value={bug.status || 'To Do'}
-            onChange={(e) => handleStatusChange(bug._id, e.target.value)}
-            className="px-2 py-1 text-[11px] font-semibold bg-gray-900/80 border border-white/20 rounded-lg text-white focus:outline-none flex-1"
-          >
-            <option value="To Do">To Do</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
+          {isToDo && (
+            <button
+              onClick={() => handleStatusChange(bug._id, 'In Progress')}
+              className="px-3 py-1.5 text-[11px] font-semibold bg-blue-600/80 hover:bg-blue-600 text-white rounded-lg transition flex-1 shadow"
+            >
+              Start →
+            </button>
+          )}
+
+          {isInProgress && (
+            <button
+              onClick={() => handleStatusChange(bug._id, 'Done')}
+              className="px-3 py-1.5 text-[11px] font-semibold bg-green-600/80 hover:bg-green-600 text-white rounded-lg transition flex-1 shadow"
+            >
+              Response ✓
+            </button>
+          )}
+
+          {isDone && (
+            <button
+              onClick={() => handleStatusChange(bug._id, 'In Progress')}
+              className="px-3 py-1.5 text-[11px] font-semibold bg-gray-700 hover:bg-gray-600 text-gray-200 rounded-lg transition flex-1 shadow"
+            >
+              ↺ Reopen
+            </button>
+          )}
+
           <button
             onClick={() => handleDeleteBug(bug._id)}
-            className="px-2.5 py-1 bg-red-500/20 hover:bg-red-500/40 border border-red-500/30 text-red-200 text-[11px] font-semibold rounded-lg transition"
+            className="px-2.5 py-1.5 bg-red-500/20 hover:bg-red-500/40 border border-red-500/30 text-red-200 text-[11px] font-semibold rounded-lg transition"
           >
             Delete
           </button>
