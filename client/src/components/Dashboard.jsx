@@ -144,32 +144,6 @@ export default function Dashboard({ onLogout }) {
     }
   };
 
-  // Add Comment Handler
-  const handleAddComment = async (bugId) => {
-    const text = commentInputs[bugId];
-    if (!text || !text.trim()) return;
-
-    try {
-      const response = await fetch(`/api/bugs/${bugId}/comments`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ text }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setBugs((prevBugs) => prevBugs.map((bug) => (bug._id === bugId ? data : bug)));
-        setCommentInputs({ ...commentInputs, [bugId]: '' });
-      } else {
-        setError(data.message || 'Failed to add comment');
-      }
-    } catch (err) {
-      setError('Server error while adding comment');
-    }
-  };
-
   // Advanced Filter and Search Logic (Project-scoped)
   const filteredBugs = bugs.filter((bug) => {
     const matchesProject = (bug.projectId?._id || bug.projectId) === selectedProject;
@@ -407,7 +381,7 @@ export default function Dashboard({ onLogout }) {
                   
                   {/* Column 1: To Do */}
                   <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[280px] max-h-[550px] overflow-y-auto">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/90 backdrop-blur-md z-10">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-white/5 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">To Do</h3>
                       <span className="text-xs bg-purple-500/30 text-purple-200 px-2.5 py-0.5 rounded-full font-semibold">{todoBugs.length}</span>
                     </div>
@@ -422,7 +396,7 @@ export default function Dashboard({ onLogout }) {
 
                   {/* Column 2: In Progress */}
                   <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[280px] max-h-[550px] overflow-y-auto">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/90 backdrop-blur-md z-10">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-white/5 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">In Progress</h3>
                       <span className="text-xs bg-blue-500/30 text-blue-200 px-2.5 py-0.5 rounded-full font-semibold">{inProgressBugs.length}</span>
                     </div>
@@ -437,7 +411,7 @@ export default function Dashboard({ onLogout }) {
 
                   {/* Column 3: Done */}
                   <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[280px] max-h-[550px] overflow-y-auto">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/90 backdrop-blur-md z-10">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-white/5 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">Done</h3>
                       <span className="text-xs bg-green-500/30 text-green-200 px-2.5 py-0.5 rounded-full font-semibold">{resolvedBugs.length}</span>
                     </div>
@@ -459,7 +433,7 @@ export default function Dashboard({ onLogout }) {
     </div>
   );
 
-  // Helper function to render individual Bug Card matching requested minimalist design with Date
+  // Helper function to render individual Bug Card
   function renderBugCard(bug) {
     const isDone = bug.status === 'Done';
     const isInProgress = bug.status === 'In Progress';
