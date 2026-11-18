@@ -23,7 +23,7 @@ export default function Dashboard({ onLogout }) {
   // Fetch Bugs
   const fetchBugs = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/bugs', {
+      const response = await fetch('/api/bugs', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -40,7 +40,7 @@ export default function Dashboard({ onLogout }) {
   // Fetch Projects
   const fetchProjects = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/projects', {
+      const response = await fetch('/api/projects', {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -80,7 +80,7 @@ export default function Dashboard({ onLogout }) {
         status: 'To Do'
       };
 
-      const response = await fetch('http://localhost:5000/api/bugs', {
+      const response = await fetch('/api/bugs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ export default function Dashboard({ onLogout }) {
 
   const handleDeleteBug = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/bugs/${id}`, {
+      const response = await fetch(`/api/bugs/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -123,7 +123,7 @@ export default function Dashboard({ onLogout }) {
     );
 
     try {
-      const response = await fetch(`http://localhost:5000/api/bugs/${id}/status`, {
+      const response = await fetch(`/api/bugs/${id}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ export default function Dashboard({ onLogout }) {
     if (!text || !text.trim()) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/bugs/${bugId}/comments`, {
+      const response = await fetch(`/api/bugs/${bugId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
