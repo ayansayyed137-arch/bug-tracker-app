@@ -428,14 +428,14 @@ export default function Dashboard({ onLogout }) {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   
                   {/* Column 1: To Do */}
-                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[350px] max-h-[600px] overflow-y-auto">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/80 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">To Do</h3>
                       <span className="text-xs bg-purple-500/30 text-purple-200 px-2.5 py-0.5 rounded-full font-semibold">{todoBugs.length}</span>
                     </div>
-                    <div className="space-y-4 flex-1">
+                    <div className="space-y-4">
                       {todoBugs.length === 0 ? (
-                        <p className="text-xs text-gray-400 italic">No tasks in To Do</p>
+                        <p className="text-xs text-gray-400 italic text-center py-6">No tasks in To Do</p>
                       ) : (
                         todoBugs.map((bug) => renderBugCard(bug))
                       )}
@@ -443,14 +443,14 @@ export default function Dashboard({ onLogout }) {
                   </div>
 
                   {/* Column 2: In Progress */}
-                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[350px] max-h-[600px] overflow-y-auto">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/80 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">In Progress</h3>
                       <span className="text-xs bg-blue-500/30 text-blue-200 px-2.5 py-0.5 rounded-full font-semibold">{inProgressBugs.length}</span>
                     </div>
-                    <div className="space-y-4 flex-1">
+                    <div className="space-y-4">
                       {inProgressBugs.length === 0 ? (
-                        <p className="text-xs text-gray-400 italic">No tasks in progress</p>
+                        <p className="text-xs text-gray-400 italic text-center py-6">No tasks in progress</p>
                       ) : (
                         inProgressBugs.map((bug) => renderBugCard(bug))
                       )}
@@ -458,14 +458,14 @@ export default function Dashboard({ onLogout }) {
                   </div>
 
                   {/* Column 3: Done */}
-                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[350px] max-h-[600px] overflow-y-auto">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/80 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">Done</h3>
                       <span className="text-xs bg-green-500/30 text-green-200 px-2.5 py-0.5 rounded-full font-semibold">{resolvedBugs.length}</span>
                     </div>
-                    <div className="space-y-4 flex-1">
+                    <div className="space-y-4">
                       {resolvedBugs.length === 0 ? (
-                        <p className="text-xs text-gray-400 italic">No completed tasks</p>
+                        <p className="text-xs text-gray-400 italic text-center py-6">No completed tasks</p>
                       ) : (
                         resolvedBugs.map((bug) => renderBugCard(bug))
                       )}
