@@ -425,11 +425,11 @@ export default function Dashboard({ onLogout }) {
               {!selectedProject ? (
                 <p className="text-gray-300 text-sm">Please select or create a project to view tasks.</p>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
                   
                   {/* Column 1: To Do */}
-                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[350px] max-h-[600px] overflow-y-auto">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/80 backdrop-blur-md z-10">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[280px] max-h-[550px] overflow-y-auto">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/90 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">To Do</h3>
                       <span className="text-xs bg-purple-500/30 text-purple-200 px-2.5 py-0.5 rounded-full font-semibold">{todoBugs.length}</span>
                     </div>
@@ -443,8 +443,8 @@ export default function Dashboard({ onLogout }) {
                   </div>
 
                   {/* Column 2: In Progress */}
-                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[350px] max-h-[600px] overflow-y-auto">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/80 backdrop-blur-md z-10">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[280px] max-h-[550px] overflow-y-auto">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/90 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">In Progress</h3>
                       <span className="text-xs bg-blue-500/30 text-blue-200 px-2.5 py-0.5 rounded-full font-semibold">{inProgressBugs.length}</span>
                     </div>
@@ -458,8 +458,8 @@ export default function Dashboard({ onLogout }) {
                   </div>
 
                   {/* Column 3: Done */}
-                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[350px] max-h-[600px] overflow-y-auto">
-                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/80 backdrop-blur-md z-10">
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-2xl backdrop-blur-md flex flex-col min-h-[280px] max-h-[550px] overflow-y-auto">
+                    <div className="flex justify-between items-center mb-4 pb-2 border-b border-white/10 sticky top-0 bg-indigo-950/90 backdrop-blur-md z-10">
                       <h3 className="font-bold text-white text-md">Done</h3>
                       <span className="text-xs bg-green-500/30 text-green-200 px-2.5 py-0.5 rounded-full font-semibold">{resolvedBugs.length}</span>
                     </div>
